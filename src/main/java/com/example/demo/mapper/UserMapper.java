@@ -16,4 +16,6 @@ public interface UserMapper {
      * @return 所有的用户集合
      */
     List<User> selectAllUser();
+
+    void save(User user);
 }

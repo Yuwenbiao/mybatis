@@ -16,4 +16,14 @@ public class MybatisTestTest {
     public void getAllUser() {
         mybatisTest.getAllUser();
     }
+
+    @Test
+    public void insertUser() {
+        mybatisTest.insertUser();
+    }
+
+    @Test
+    public void pageTest() {
+        mybatisTest.pageTest();
+    }
 }

@@ -1,8 +1,12 @@
 package com.example.demo.test;
 
+import com.example.demo.entity.User;
 import com.example.demo.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 测试
@@ -21,5 +25,20 @@ public class MybatisTest {
 
     public void getAllUser() {
         System.out.println(userMapper.selectAllUser());
+    }
+
+    public void insertUser() {
+        for (int i = 0; i < 30; i++) {
+            User user = new User();
+            user.setName("name"+i);
+            user.setPassword("pwd"+i);
+            userMapper.save(user);
+        }
+    }
+
+    public void pageTest() {
+        PageHelper.startPage(1, 10);
+        List<User> userList = userMapper.selectAllUser();
+        System.out.println(userList.size());
     }
 }

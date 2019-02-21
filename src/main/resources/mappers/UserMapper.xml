@@ -7,6 +7,9 @@
     <result column="password" property="password" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectAllUser" resultMap="User">
-    select * from user;
+    select * from user
   </select>
+  <insert id="save" parameterType="User">
+    INSERT INTO user(name, password) VALUES (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR});
+  </insert>
 </mapper>
