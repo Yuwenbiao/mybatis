@@ -1,7 +1,7 @@
 package com.example.demo.test;
 
 import com.example.demo.entity.User;
-import com.example.demo.mapper.UserMapper;
+import com.example.demo.mapper.local.UserMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,10 +30,17 @@ public class MybatisTest {
     public void insertUser() {
         for (int i = 0; i < 30; i++) {
             User user = new User();
-            user.setName("name"+i);
-            user.setPassword("pwd"+i);
+            user.setName("name" + i);
+            user.setPassword("pwd" + i);
             userMapper.save(user);
         }
+    }
+
+    /**
+     * 查询用户记录
+     */
+    public User selectUser(Integer id) {
+        return userMapper.selectUserById(id);
     }
 
     public void pageTest() {

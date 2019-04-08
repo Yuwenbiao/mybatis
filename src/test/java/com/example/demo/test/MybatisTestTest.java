@@ -26,4 +26,9 @@ public class MybatisTestTest {
     public void pageTest() {
         mybatisTest.pageTest();
     }
+
+    @Test
+    public void selectUser() {
+        System.out.println(mybatisTest.selectUser(1));
+    }
 }

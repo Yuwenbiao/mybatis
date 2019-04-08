@@ -44,6 +44,12 @@
             <artifactId>pagehelper</artifactId>
             <version>4.1.6</version>
         </dependency>
+        <!-- Druid 数据连接池依赖  不能支持sqlserver 2000-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.25</version>
+        </dependency>
     </dependencies>
 
     <build>

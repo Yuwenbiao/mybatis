@@ -1,6 +1,7 @@
-package com.example.demo.mapper;
+package com.example.demo.mapper.local;
 
 import com.example.demo.entity.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,12 +11,21 @@ import java.util.List;
  * @author yuwb@corp.21cn.com
  * @date 19-2-21 下午3:41
  */
+@Repository
 public interface UserMapper {
     /**
      * 获取所有的用户
+     *
      * @return 所有的用户集合
      */
     List<User> selectAllUser();
 
     void save(User user);
+
+    /**
+     * 通过主键id获取用户信息
+     *
+     * @return 用户信息
+     */
+    User selectUserById(Integer id);
 }
