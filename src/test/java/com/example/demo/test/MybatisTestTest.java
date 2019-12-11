@@ -31,4 +31,9 @@ public class MybatisTestTest {
     public void selectUser() {
         System.out.println(mybatisTest.selectUser(1));
     }
+
+    @Test
+    public void testGetAllUser2() {
+        mybatisTest.getAllUser2();
+    }
 }

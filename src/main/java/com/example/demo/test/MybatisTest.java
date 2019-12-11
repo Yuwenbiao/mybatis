@@ -2,6 +2,7 @@ package com.example.demo.test;
 
 import com.example.demo.entity.User;
 import com.example.demo.mapper.local.UserMapper;
+import com.example.demo.mapper.remote.UserMapper2;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,12 @@ import java.util.List;
 @Component
 public class MybatisTest {
     private UserMapper userMapper;
+    private UserMapper2 userMapper2;
 
     @Autowired
-    public MybatisTest(UserMapper userMapper) {
+    public MybatisTest(UserMapper userMapper, UserMapper2 userMapper2) {
         this.userMapper = userMapper;
+        this.userMapper2 = userMapper2;
     }
 
     public void getAllUser() {
@@ -47,5 +50,9 @@ public class MybatisTest {
         PageHelper.startPage(1, 10);
         List<User> userList = userMapper.selectAllUser();
         System.out.println(userList.size());
+    }
+
+    public void getAllUser2() {
+        System.out.println(userMapper2.selectAllUser());
     }
 }
