@@ -6,14 +6,17 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
     </resultMap>
+
     <select id="selectAllUser" resultMap="User">
         select *
         from user
     </select>
+
     <insert id="save" parameterType="com.example.demo.entity.User">
         INSERT INTO user(name, password)
         VALUES (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR});
     </insert>
+
     <select id="selectUserById" parameterType="int" resultMap="User">
         select *
         from user

@@ -47,9 +47,11 @@ public class MybatisTest {
     }
 
     public void pageTest() {
-        PageHelper.startPage(1, 10);
-        List<User> userList = userMapper.selectAllUser();
-        System.out.println(userList.size());
+        for (int i = 1; i < 4; i++) {
+            PageHelper.startPage(i, 10);
+            List<User> userList = userMapper.selectAllUser();
+            System.out.println(userList.get(0).getName());
+        }
     }
 
     public void getAllUser2() {
