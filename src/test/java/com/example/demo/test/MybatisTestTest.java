@@ -52,4 +52,9 @@ public class MybatisTestTest {
     public void testCache2() {
         mybatisTest.testCache2();
     }
+
+    @Test
+    public void testLazyLoading() {
+        mybatisTest.testLazyLoading();
+    }
 }

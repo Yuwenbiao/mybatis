@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.remote.ArticleMapper">
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Article">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="userId" property="userId"/>
+
+        <!--延迟加载配置-->
+        <association property="user" column="userId" select="getUser" fetchType="lazy"/>
+        <collection property="tags" column="userId" select="getTags" fetchType="lazy"/>
+    </resultMap>
+
+    <select id="getList" resultMap="BaseResultMap">
+        select *
+        from test2.article;
+    </select>
+
+    <select id="getUser" resultType="com.example.demo.entity.User">
+        select *
+        from user;
+    </select>
+
+    <select id="getTags" resultType="com.example.demo.entity.Tag">
+        select *
+        from test2.tag;
+    </select>
+</mapper>

@@ -1,7 +1,9 @@
 package com.example.demo.test;
 
+import com.example.demo.entity.Article;
 import com.example.demo.entity.User;
 import com.example.demo.mapper.local.UserMapper;
+import com.example.demo.mapper.remote.ArticleMapper;
 import com.example.demo.mapper.remote.UserMapper2;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,13 @@ import java.util.List;
 public class MybatisTest {
     private UserMapper userMapper;
     private UserMapper2 userMapper2;
+    private ArticleMapper articleMapper;
 
     @Autowired
-    public MybatisTest(UserMapper userMapper, UserMapper2 userMapper2) {
+    public MybatisTest(UserMapper userMapper, UserMapper2 userMapper2, ArticleMapper articleMapper) {
         this.userMapper = userMapper;
         this.userMapper2 = userMapper2;
+        this.articleMapper = articleMapper;
     }
 
     /**
@@ -103,5 +107,21 @@ public class MybatisTest {
 
         User user2 = userMapper2.selectUserById(1);
         System.out.println(user2.toString());
+    }
+
+    /**
+     * 测试延迟加载
+     */
+    public void testLazyLoading() {
+        System.out.println("lazy loading");
+        List<Article> articles = articleMapper.getList();
+
+        articles.forEach(article -> {
+            System.out.println("loading user");
+            article.getUser();
+
+            System.out.println("loading tags");
+            article.getTags();
+        });
     }
 }

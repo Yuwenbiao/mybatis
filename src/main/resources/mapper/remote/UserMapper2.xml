@@ -9,7 +9,7 @@
 
     <select id="selectAllUser" resultMap="User">
         select *
-        from user
+        from user;
     </select>
 
     <insert id="save" parameterType="com.example.demo.entity.User">
