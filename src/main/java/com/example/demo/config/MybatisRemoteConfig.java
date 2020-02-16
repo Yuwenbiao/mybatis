@@ -46,9 +46,12 @@ public class MybatisRemoteConfig {
         return dataSource;
     }
 
-    @Bean(name = "remoteTransactionManager")
+    /**
+     * 事务配置
+     */
+    @Bean
     @Primary
-    public DataSourceTransactionManager networkTransactionManager() {
+    public DataSourceTransactionManager remoteTransactionManager() {
         return new DataSourceTransactionManager(remoteDataSource());
     }
 

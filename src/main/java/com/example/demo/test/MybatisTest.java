@@ -6,6 +6,7 @@ import com.example.demo.mapper.remote.UserMapper2;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,10 +27,16 @@ public class MybatisTest {
         this.userMapper2 = userMapper2;
     }
 
+    /**
+     * 获取test1数据库中所有数据
+     */
     public void getAllUser() {
         System.out.println(userMapper.selectAllUser());
     }
 
+    /**
+     * 向test1数据库中插入数据
+     */
     public void insertUser() {
         for (int i = 0; i < 30; i++) {
             User user = new User();
@@ -46,6 +53,9 @@ public class MybatisTest {
         return userMapper.selectUserById(id);
     }
 
+    /**
+     * 分页获取数据
+     */
     public void pageTest() {
         for (int i = 1; i < 4; i++) {
             PageHelper.startPage(i, 10);
@@ -54,7 +64,44 @@ public class MybatisTest {
         }
     }
 
+    /**
+     * 获取test2数据库中的所有数据
+     */
     public void getAllUser2() {
         System.out.println(userMapper2.selectAllUser());
+    }
+
+    /**
+     * 向test2数据库中插入一条数据
+     */
+    public void insertUser2() {
+        User user = new User();
+        user.setName("name1");
+        user.setPassword("pwd2");
+        userMapper2.save(user);
+    }
+
+    /**
+     * 测试一级缓存
+     * mybatis和Spring集成时必须加上事务，一级缓存才会生效
+     */
+    @Transactional(value = "remoteTransactionManager", rollbackFor = Exception.class)
+    public void testCache1() {
+        User user = userMapper2.selectUserById(1);
+        System.out.println(user.toString());
+
+        User user2 = userMapper2.selectUserById(1);
+        System.out.println(user2.toString());
+    }
+
+    /**
+     * 测试二级缓存
+     */
+    public void testCache2() {
+        User user = userMapper2.selectUserById(1);
+        System.out.println(user.toString());
+
+        User user2 = userMapper2.selectUserById(1);
+        System.out.println(user2.toString());
     }
 }

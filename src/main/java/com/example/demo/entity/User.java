@@ -1,12 +1,16 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
+
 /**
  * 用户信息类
  *
  * @author yuwb@corp.21cn.com
  * @date 19-2-21 下午3:39
  */
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
     private String name;
     private String password;

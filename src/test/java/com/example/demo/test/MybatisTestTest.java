@@ -36,4 +36,20 @@ public class MybatisTestTest {
     public void testGetAllUser2() {
         mybatisTest.getAllUser2();
     }
+
+    @Test
+    public void testInsertUser2() {
+        mybatisTest.insertUser2();
+    }
+
+
+    @Test
+    public void testCacheNamespace() {
+        mybatisTest.testCache1();
+    }
+
+    @Test
+    public void testCache2() {
+        mybatisTest.testCache2();
+    }
 }
