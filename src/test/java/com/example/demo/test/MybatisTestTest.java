@@ -57,4 +57,9 @@ public class MybatisTestTest {
     public void testLazyLoading() {
         mybatisTest.testLazyLoading();
     }
+
+    @Test
+    public void testAnnotationTest() {
+        mybatisTest.testAnnotation();
+    }
 }

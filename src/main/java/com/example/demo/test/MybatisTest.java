@@ -2,6 +2,7 @@ package com.example.demo.test;
 
 import com.example.demo.entity.Article;
 import com.example.demo.entity.User;
+import com.example.demo.mapper.annotation.AnnotationMapper;
 import com.example.demo.mapper.local.UserMapper;
 import com.example.demo.mapper.remote.ArticleMapper;
 import com.example.demo.mapper.remote.UserMapper2;
@@ -23,12 +24,14 @@ public class MybatisTest {
     private UserMapper userMapper;
     private UserMapper2 userMapper2;
     private ArticleMapper articleMapper;
+    private final AnnotationMapper annotationMapper;
 
     @Autowired
-    public MybatisTest(UserMapper userMapper, UserMapper2 userMapper2, ArticleMapper articleMapper) {
+    public MybatisTest(UserMapper userMapper, UserMapper2 userMapper2, ArticleMapper articleMapper, AnnotationMapper annotationMapper) {
         this.userMapper = userMapper;
         this.userMapper2 = userMapper2;
         this.articleMapper = articleMapper;
+        this.annotationMapper = annotationMapper;
     }
 
     /**
@@ -123,5 +126,10 @@ public class MybatisTest {
             System.out.println("loading tags");
             article.getTags();
         });
+    }
+
+    public void testAnnotation() {
+        List<User> users = annotationMapper.selectAllUser();
+        System.out.println(users.size());
     }
 }
